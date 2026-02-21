@@ -63,7 +63,7 @@ function verifyMedicalHistory(
   vaccineSchedule: any
 ): boolean {
   const nextDose: any = getNextDose(lastVaccine, vaccineSchedule);
-    if(nextDose === null) return false;
+
   const hasIneligible = hasAny(userInfo.medicalConditions, nextDose.ineligibilityConditions);
   if (hasIneligible) return false; // NOT eligible
 
@@ -78,6 +78,9 @@ function verifyMedicalHistory(
 // Determine the status 
 export function determineStatus(userInfo : any, lastVaccine : any, vaccineSchedule : any)
 {
+    const nextDose: any = getNextDose(lastVaccine, vaccineSchedule);
+    if(nextDose === null) return VaccineStatus.COMPLETED;
+
     let medicalStatus = verifyMedicalHistory(userInfo, lastVaccine, vaccineSchedule);
 
     if(!medicalStatus) return VaccineStatus.NOT_ELIGIBLE;
