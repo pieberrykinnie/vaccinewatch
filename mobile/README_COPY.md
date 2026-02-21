@@ -24,7 +24,7 @@ Meanwhile, clinics struggle to track eligibility because Manitoba's public healt
 - **Hardware**: [PineTime](https://pine64.org/devices/pinetime/).
 - **Firmware**: [InfiniTime](https://github.com/InfiniTimeOrg/InfiniTime).
 - **Watch Integration**: [Gadgetbridge](https://gadgetbridge.org/).
-- **Mobile (Android)**: [Expo](https://expo.dev/).
+- **Mobile (Android)**: [Jetpack Compose](https://developer.android.com/develop/ui/compose/).
 - **Backend**: [Supabase](https://supabase.com/).
 
 ## Architecture
@@ -49,7 +49,7 @@ The app will display an onboarding screen before prompting the user to input the
 2. **Medical Profile**
     * Are you currently pregnant? (*Yes/No*)
         * (*Yes*) Estimated due date
-    * Do you have any immunocompromising conditions? (e.g., HIV, congenital immune deficiencies, lack of a spleen) (*Yes/No/Unsure*) 
+    * Do you have any immunocompromising conditions? (e.g., HIV, congenital immune deficiencies, lack of a spleen) (*Yes/No/Unsure*)
     * Are you currently receiving specialized medical care? (e.g., cancer treatments, dialysis, stem cell or solid organ transplants) (*Yes/No/Unsure*)
     * Do you have a chronic illness? (e.g., chronic liver/kidney disease, severe asthma/COPD) (*Yes/No/Unsure*)
 3. **Lifestyle**
@@ -152,10 +152,10 @@ Clinics struggle with:
 Build a system that:
 
 * Determines vaccine eligibility based on:
-  * Age
-  * Medical history
-  * Last dose date
-  * Risk factors (e.g.: chronic conditions, pregnancy, immunocompromised status)
+    * Age
+    * Medical history
+    * Last dose date
+    * Risk factors (e.g.: chronic conditions, pregnancy, immunocompromised status)
 * Identifies overdue or upcoming vaccines
 * Sends intelligent reminders
 * Displays a patient-friendly immunization timeline
@@ -163,19 +163,19 @@ Build a system that:
 Features:
 
 * Patient Profile Input
-  * A simple interface where users can enter their information (e.g.: Demographics, DOB, chronic conditions, vaccination history)
-  * Can mock patient profiles, upload CSV or use a form-based input
+    * A simple interface where users can enter their information (e.g.: Demographics, DOB, chronic conditions, vaccination history)
+    * Can mock patient profiles, upload CSV or use a form-based input
 * Vaccine Rule Engine
-  * Create a rule-based eligibility engine either from scratch using custom logic or using an open-source rule engine framework.
-  * Reference examples:
-    * [Manitoba vaccine eligibility](https://www.gov.mb.ca/health/publichealth/cdc/vaccineeligibility.html)
-    * [Manitoba immunization schedules](https://www.gov.mb.ca/health/publichealth/cdc/div/schedules.html)
-  * The system should check patient data, apply rule logic and determine which vaccines are eligible now, due soon, overdue and not eligible.
-  * Simplified/mocked rules are fine.
+    * Create a rule-based eligibility engine either from scratch using custom logic or using an open-source rule engine framework.
+    * Reference examples:
+        * [Manitoba vaccine eligibility](https://www.gov.mb.ca/health/publichealth/cdc/vaccineeligibility.html)
+        * [Manitoba immunization schedules](https://www.gov.mb.ca/health/publichealth/cdc/div/schedules.html)
+    * The system should check patient data, apply rule logic and determine which vaccines are eligible now, due soon, overdue and not eligible.
+    * Simplified/mocked rules are fine.
 * Immunization Timeline Visualization
-  * Display completed, due soon, overdue, and not eligible vaccines.
-  * Display vaccination history with a timeline.
-  * Include clear visual indications (e.g.: color-coded status)
+    * Display completed, due soon, overdue, and not eligible vaccines.
+    * Display vaccination history with a timeline.
+    * Include clear visual indications (e.g.: color-coded status)
 * Smart Reminder System
-  * Identify vaccines due within x days.
-  * Simulate email reminder, SMS alert, and/or in-app notification.
+    * Identify vaccines due within x days.
+    * Simulate email reminder, SMS alert, and/or in-app notification.
