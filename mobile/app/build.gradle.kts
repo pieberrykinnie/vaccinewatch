@@ -1,3 +1,11 @@
+import java.util.Properties
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.inputStream().use(localProperties::load)
+}
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -5,41 +13,37 @@ plugins {
 
 android {
     namespace = "com.example.vaccinewatch"
+
+    // If this DSL isn't supported in your project, use: compileSdk = 36
     compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
+        version = release(36) { minorApiLevel = 1 }
     }
 
     defaultConfig {
         applicationId = "com.example.vaccinewatch"
+
+        // ⚠️ minSdk = 36 means it ONLY runs on Android API 36 devices/emulators.
+        // If you want it to run on normal phones, set something like 24/26 instead.
         minSdk = 36
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        val supabaseUrl = localProperties.getProperty("SUPABASE_URL") ?: ""
+        val fn = localProperties.getProperty("SUPABASE_GET_USER_FN") ?: "get-user"
+        val anon = localProperties.getProperty("SUPABASE_ANON_KEY") ?: ""
+
+        buildConfigField("String", "SUPABASE_URL", "\"$supabaseUrl\"")
+        buildConfigField("String", "SUPABASE_FUNCTION_GET_USER_URL", "\"$supabaseUrl/functions/v1/$fn\"")
+        buildConfigField("String", "SUPABASE_ANON_KEY", "\"$anon\"")
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
 dependencies {
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
