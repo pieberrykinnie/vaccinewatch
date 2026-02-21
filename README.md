@@ -4,7 +4,7 @@ Take control of your health, with the flick of a wrist. **VaccineWatch** is an A
 
 ## Problem Statement
 
-As we were doing this hackathon, we received an email from the University that a case of measles was detected on University's property a week ago.
+As we were doing this hackathon, we received an email that a case of measles was detected on University's property a week ago.
 
 In just the first week of February 2026, [Manitoba confirmed 44 new cases of measles](https://www.cbc.ca/news/canada/manitoba/measles-cases-february-9.7089341), prompting blanket warnings across southern municipalities and alerts for major public gatherings in Winnipeg, including a Winnipeg Jets game. Adults frequenly forget booster schedules or mistakenly believe their primary series is sufficient for long-term children protection, which consequently lead to children missing age-based vaccines, creating preventable outbreaks.
 
@@ -39,7 +39,7 @@ Meanwhile, clinics struggle to track eligibility because Manitoba's public healt
 
 #### Patient Profile Input
 
-The app will display an onboarding screen before prompting the user to input the following information. After registering their email (or password) for authentication, the form is broken up using **progressive disclosure**:
+The app will display an onboarding screen before prompting the user to input the following information. After registering their email (or phone number) and password for authentication, the form is broken up using **progressive disclosure**:
 
 1. **Demographics**
     * Date of Birth
@@ -73,7 +73,7 @@ The backend service stores information about each vaccine, their eligibility, an
 
 1. **Completed** (Blue): The user has already taken the maximum number of doses of the vaccine.
 1. **Not yet due** (Yellow): The user is physically allowed to get the vaccine, but is still far away from the recommended date.
-1. **Eligible** (Green): The user is approaching, or has reached the recommended date for the vaccine.
+1. **Eligible** (Green): The user has reached the recommended date for the vaccine.
 1. **Overdue** (Orange): The user has missed the recommended timeframe for the vaccine and should not get it.
 1. **Not eligible** (Red): The user cannot physically get the vaccine due to a hard medical rule.
 1. **Confirm with Doctor** (Question Mark Overlay): The potential risks of the vaccine are uncertain and the user should double check with a doctor. This is to cover the cases where the user fills out "Unsure"s in the questionnaires.
