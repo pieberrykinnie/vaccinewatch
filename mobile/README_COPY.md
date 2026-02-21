@@ -24,7 +24,7 @@ Meanwhile, clinics struggle to track eligibility because Manitoba's public healt
 - **Hardware**: [PineTime](https://pine64.org/devices/pinetime/).
 - **Firmware**: [InfiniTime](https://github.com/InfiniTimeOrg/InfiniTime).
 - **Watch Integration**: [Gadgetbridge](https://gadgetbridge.org/).
-- **Mobile (Android)**: [Expo](https://expo.dev/).
+- **Mobile (Android)**: [Jetpack Compose](https://developer.android.com/develop/ui/compose/).
 - **Backend**: [Supabase](https://supabase.com/).
 
 ## Architecture
