@@ -13,4 +13,11 @@
 .externalNativeBuild
 .cxx
 local.properties
+<<<<<<< HEAD
 .env
+=======
+
+.idea/
+out/
+gen/
+>>>>>>> mobile

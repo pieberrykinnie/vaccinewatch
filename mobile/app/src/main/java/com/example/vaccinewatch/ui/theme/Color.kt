@@ -17,3 +17,12 @@ val BackgroundLight = Color(0xFFE8E8E8)
 val BackgroundDark = Color(0xFF1E1E1E)
 val SurfaceLight = Color(0xFFFEFEFE)
 val SurfaceDark = Color(0xFF363636)
+
+// vaccine colors
+val StatusCompleted = Color(0xFF2196F3)
+val StatusNotYetDue = Color(0xFFFFC107)
+val StatusEligible = Color(0xFF4CAF50)
+val StatusOverdue = Color(0xFFFF9800)
+val StatusNotEligible = Color(0xFFF44336)
+val StatusConfirmDoctor = Color(0xFF9C27B0) // idk i just needed a different color
+val StatusIrrelevant = Color(0xFF9E9E9E)
