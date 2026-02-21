@@ -39,9 +39,9 @@ MyApp::MyApp() {
   lv_obj_align(calendar, lv_scr_act(), LV_ALIGN_CENTER, 0, 27);
 
   lv_calendar_date_t today;
-  today.year = 2021;
+  today.year = 2026;
   today.month = 2;
-  today.day = 23;
+  today.day = 21;
   lv_calendar_set_today_date(calendar, &today);
   lv_calendar_set_showed_date(calendar, &today);
   
