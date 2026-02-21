@@ -1,0 +1,3 @@
+export enum VaccineStatus {
+    COMPLETED, ELIGIBLE_NOW, DUE_SOON , OVERDUE , NOT_ELIGIBLE
+} 
