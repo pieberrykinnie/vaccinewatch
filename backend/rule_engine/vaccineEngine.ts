@@ -50,14 +50,29 @@ function computeRecDate(userInfo : any, lastVaccine : any, vaccineSchedule : any
     
 }
 
-// Determine the medical history to verify ineligible
-function verifyMedicalHistory(userInfo : any, lastVaccine : any, vaccineSchedule : any)
-{
-    let nextDose = getNextDose(lastVaccine, vaccineSchedule);
-    if(!(userInfo.medicalConditions in nextDose.requiredConditions) && (userInfo.medicalConditions in nextDose.ineligibilityConditions))
-        return true;
-    
-    return false;
+// Check if anything inside a list
+function hasAny(user: string[], ruleList?: string[]) {
+  if (!ruleList || ruleList.length === 0) return false;
+  const set = new Set(user);
+  return ruleList.some(c => set.has(c));
+}
+
+function verifyMedicalHistory(
+  userInfo: any,
+  lastVaccine: any,
+  vaccineSchedule: any
+): boolean {
+  const nextDose: any = getNextDose(lastVaccine, vaccineSchedule);
+    if(nextDose === null) return false;
+  const hasIneligible = hasAny(userInfo.medicalConditions, nextDose.ineligibilityConditions);
+  if (hasIneligible) return false; // NOT eligible
+
+  const requiresSomething = (nextDose.requiredConditions?.length ?? 0) > 0;
+  const meetsRequirement = requiresSomething
+    ? hasAny(userInfo.medicalConditions, nextDose.requiredConditions)
+    : true;
+
+  return meetsRequirement; 
 }
 
 // Determine the status 
@@ -65,7 +80,7 @@ export function determineStatus(userInfo : any, lastVaccine : any, vaccineSchedu
 {
     let medicalStatus = verifyMedicalHistory(userInfo, lastVaccine, vaccineSchedule);
 
-    if(medicalStatus) return VaccineStatus.NOT_ELIGIBLE;
+    if(!medicalStatus) return VaccineStatus.NOT_ELIGIBLE;
 
     const TODAY : Date = new Date();
     let dueDate : Date | null = computeRecDate(userInfo , lastVaccine , vaccineSchedule );
